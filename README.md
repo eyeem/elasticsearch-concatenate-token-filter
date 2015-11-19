@@ -1,13 +1,12 @@
-# elasticsearch-concatenate-token-filter
-Elasticsearch plugin which only provides a TokenFilter that merges tokens in a token stream back into one. Taken from http://elasticsearch-users.115913.n3.nabble.com/Is-there-a-concatenation-filter-td3711094.html
+# Elasticsearch concatenation token filter
+Elasticsearch plugin providing the `concatenate` token filter for merging tokens in a token stream back into one single token. The Lucene code is taken from a [discussion thread](http://elasticsearch-users.115913.n3.nabble.com/Is-there-a-concatenation-filter-td3711094.html) on the Elasticsearch mailing list.
 
 ## Usage
-The plugin provides a token filter of type `concatenate` which has one parameter `token_separator`. Use it in your custom analyzers to merge tokenized strings back into one single token (usually after applying stemming or other token filters).
+The plugin provides a token filter of type `concatenate`. The only provided parameter is `token_separator`, that allows to set the separator to use when concatenating the tokens back together.
 
-## Example
-Given the custom analyzer (see https://www.elastic.co/guide/en/elasticsearch/guide/current/custom-analyzers.html):
+## Example usage
 
-```java
+```javascript
 {
   "analysis" : {
     "filter" : {
@@ -32,10 +31,17 @@ Given the custom analyzer (see https://www.elastic.co/guide/en/elasticsearch/gui
   }
 }
 ```
-the string:
 
-    "the fox jumped over the fence"
-
-would be analyzed as:
-
-    "fox_jumped_over_fence"
+```bash
+> POST /test/_analyze?text=the fox jumped over the fence&analyzer=stop_concatenate
+> {
+    "tokens": [
+      {
+        "token": "this is a test",
+        "start_offset": 0,
+        "end_offset": 0,
+        "type": "word",
+        "position": 1
+      }
+    ]
+  }
