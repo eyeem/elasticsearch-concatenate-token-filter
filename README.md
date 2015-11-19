@@ -4,6 +4,8 @@ Elasticsearch plugin providing the `concatenate` token filter for merging tokens
 ## Usage
 The plugin provides a token filter of type `concatenate`. The only provided parameter is `token_separator`, that allows to set the separator to use when concatenating the tokens back together.
 
+The `master` branch currently works with *Elasticsearch 1.5*.
+
 ## Example usage
 
 ```javascript
