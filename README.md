@@ -31,17 +31,19 @@ The plugin provides a token filter of type `concatenate`. The only provided para
   }
 }
 ```
+This custom analyzer will first tokenize the input string using the `standard` tokenizer, will apply the stopwords removal (and any other filter we put before the `concatenate` filter), and finally concatenate all tokens back together using the provided `token_separator`.
 
 ```bash
-> POST /test/_analyze?text=the fox jumped over the fence&analyzer=stop_concatenate
-> {
-    "tokens": [
-      {
-        "token": "this is a test",
-        "start_offset": 0,
-        "end_offset": 0,
-        "type": "word",
-        "position": 1
-      }
-    ]
-  }
+POST /test/_analyze?text=the fox jumped over the fence&analyzer=stop_concatenate
+{
+  "tokens": [
+    {
+      "token": "this is a test",
+      "start_offset": 0,
+      "end_offset": 0,
+      "type": "word",
+      "position": 1
+    }
+  ]
+}
+```
