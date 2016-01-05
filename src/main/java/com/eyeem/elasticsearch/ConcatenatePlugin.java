@@ -2,9 +2,9 @@ package com.eyeem.elasticsearch;
 
 import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.index.analysis.AnalysisModule;
-import org.elasticsearch.plugins.AbstractPlugin;
+import org.elasticsearch.plugins.Plugin;
 
-public class ConcatenatePlugin extends AbstractPlugin {
+public class ConcatenatePlugin extends Plugin {
     @Override
     public String name() {
         return "analysis-concatenate";
@@ -15,11 +15,7 @@ public class ConcatenatePlugin extends AbstractPlugin {
         return "Plugin that provides a Token Filter that recombines all of the tokens in a token stream back into one.";
     }
 
-    @Override
-    public void processModule(Module module) {
-        if (module instanceof AnalysisModule) {
-            AnalysisModule analysisModule = (AnalysisModule) module;
-            analysisModule.addTokenFilter("concatenate", ConcatenateTokenFilterFactory.class);
-        }
+    public void onModule(AnalysisModule module) {
+        module.addTokenFilter("concatenate", ConcatenateTokenFilterFactory.class);
     }
 }

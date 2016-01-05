@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.elasticsearch</groupId>
-        <artifactId>elasticsearch-parent</artifactId>
-        <version>1.5.0</version>
-    </parent>
-
     <name>elasticsearch-concatenate</name>
     <artifactId>elasticsearch-concatenate</artifactId>
-    <version>1.1.0</version>
+    <version>2.1.0</version>
     <packaging>jar</packaging>
-    <description>Plugin that provides a Token Filter that recombines all of the tokens in a token stream back into one.</description>
+    <description>Token filter to recombine all of the tokens in a token stream back into one</description>
     <inceptionYear>2015</inceptionYear>
+
+    <parent>
+        <groupId>org.elasticsearch.plugin</groupId>
+        <artifactId>plugins</artifactId>
+        <version>2.1.0</version>
+    </parent>
 
     <licenses>
         <license>
@@ -39,82 +39,25 @@
         </repository>
     </distributionManagement>
 
+    <properties>
+        <!-- define properties for the descriptor file -->
+        <elasticsearch.plugin.classname>com.eyeem.elasticsearch.ConcatenatePlugin</elasticsearch.plugin.classname>
+        <elasticsearch.plugin.site>false</elasticsearch.plugin.site>
+        <elasticsearch.plugin.jvm>true</elasticsearch.plugin.jvm>
+        <java.specification.version>1.8</java.specification.version>
+    </properties>
+
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>release</releaseProfiles>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Tests.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <outputDirectory>${project.build.directory}/releases/</outputDirectory>
                     <descriptors>
-                        <descriptor>${basedir}/src/main/assemblies/plugin.xml</descriptor>
+                        <descriptor>${project.basedir}/src/main/assemblies/plugin.xml</descriptor>
                     </descriptors>
-                    <archive>
-                        <manifest>
-                            <mainClass>fully.qualified.MainClass</mainClass>
-                        </manifest>
-                    </archive>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>1.5.1</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
