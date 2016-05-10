@@ -6,7 +6,7 @@
 
     <name>elasticsearch-concatenate</name>
     <artifactId>elasticsearch-concatenate</artifactId>
-    <version>2.1.0</version>
+    <version>2.3.2</version>
     <packaging>jar</packaging>
     <description>Token filter to recombine all of the tokens in a token stream back into one</description>
     <inceptionYear>2015</inceptionYear>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.elasticsearch.plugin</groupId>
         <artifactId>plugins</artifactId>
-        <version>2.1.0</version>
+        <version>2.3.2</version>
     </parent>
 
     <licenses>
@@ -32,6 +32,8 @@
         <tag>HEAD</tag>
     </scm>
 
+    <!-- push to BinTray doing `mvn deploy` -->
+    <!-- see here for details https://blog.bintray.com/2015/09/17/publishing-your-maven-project-to-bintray/ -->
     <distributionManagement>
         <repository>
             <id>bintray</id>
