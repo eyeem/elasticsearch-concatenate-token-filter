@@ -6,7 +6,7 @@
 
     <name>elasticsearch-concatenate</name>
     <artifactId>elasticsearch-concatenate</artifactId>
-    <version>2.3.2</version>
+    <version>2.4.6</version>
     <packaging>jar</packaging>
     <description>Token filter to recombine all of the tokens in a token stream back into one</description>
     <inceptionYear>2015</inceptionYear>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.elasticsearch.plugin</groupId>
         <artifactId>plugins</artifactId>
-        <version>2.3.2</version>
+        <version>2.4.6</version>
     </parent>
 
     <licenses>

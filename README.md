@@ -7,7 +7,7 @@ This version of the concatenation token filter works with synonyms creating para
 ## Usage
 The plugin provides a token filter of type `concatenate`. The only provided parameter is `token_separator`, that allows to set the separator to use when concatenating the tokens back together.
 
-The `master` branch currently works with **Elasticsearch 2.3.2**.
+The `master` branch currently works with **Elasticsearch 2.4.6**.
 
 ## Example usage
 
